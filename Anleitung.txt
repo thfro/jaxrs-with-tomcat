@@ -1,0 +1,13 @@
+
+WAR-Datei "myapp.war" erzeugen
+# mvn clean package
+
+WAR-Datei in eine Tomcat-Instanz kopieren, z.B.
+# cp target/myapp.war ../apache-tomcat-9.0.43/webapps/
+
+Tomcat starten
+# ../apache-tomcat-9.0.43/bin/startup.sh
+
+API testen
+# curl -v http://localhost:8080/myapp/api/hello
+# curl -v http://localhost:8080/myapp/api/persons
