@@ -11,3 +11,34 @@ Tomcat starten
 API testen
 # curl -v http://localhost:8080/myapp/api/hello
 # curl -v http://localhost:8080/myapp/api/persons
+
+
+===========================
+Optionale Hausaufgabe:
+===========================
+
+- Implementieren Sie einen Request Filter, der zur Authorisierung dient
+
+  - Sie benötigen eine Klasse, die das Interface ContainerRequestFilter implementiert.
+    Achtung: Ihre Klasse muss die Annotation @Provider aus javax.ws.rs.ext erhalten!
+
+  - Die Methode "filter" erhält als Parameter eine Instanz von ContainerRequestContext.
+    Dieser Kontext liefert Informationen über Request URI, HTTP Methode, HTTP Header u.v.m.
+
+  - Prüfen Sie in Ihrem Filter, ob der Request einen bestimmten HTTP Header enthält, z.B. "Authorization"
+    und ob der Wert des Headers einen bestimmten Wert enthält.
+
+  - Bei Misserfolg der Prüfung kann mittels folgender Zeile verhindert werden, dass ein Request
+    durchgelassen wird zur eigentlichen Ziel-Ressource:
+
+    ctx.abortWith(Response.status(400).entity("abgelehnt").build());
+
+  - Mit curl können Sie einen zusätzlich Header setzen mit
+    -H "Mein-Header: mein-wert"
+
+- Analog kann man auch Response Filter erstellen, indem man stattdessen das Interface ContainerResponseFilter implementiert.
+  Response Filter erhalten 2 Kontexte, einen für den Request und einen für die Response. Daher können Request Filter
+  über den Request-Kontext Informationen an einen Response Filter übergeben.
+
+- Erweitern Sie sie Such- und Filtermöglichkeiten in der Klasse PersonsResource und der Methode getAllPersons
+  entsprechend unserer heutigen Überlegungen zum Thema API Design.
