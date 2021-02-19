@@ -26,19 +26,50 @@ Optionale Hausaufgabe:
     Dieser Kontext liefert Informationen über Request URI, HTTP Methode, HTTP Header u.v.m.
 
   - Prüfen Sie in Ihrem Filter, ob der Request einen bestimmten HTTP Header enthält, z.B. "Authorization"
-    und ob der Wert des Headers einen bestimmten Wert enthält.
+    und ob der Header einen bestimmten Wert enthält.
 
   - Bei Misserfolg der Prüfung kann mittels folgender Zeile verhindert werden, dass ein Request
     durchgelassen wird zur eigentlichen Ziel-Ressource:
 
-    ctx.abortWith(Response.status(400).entity("abgelehnt").build());
+    ctx.abortWith(Response.status(401).entity("abgelehnt").build());
 
   - Mit curl können Sie einen zusätzlich Header setzen mit
     -H "Mein-Header: mein-wert"
 
 - Analog kann man auch Response Filter erstellen, indem man stattdessen das Interface ContainerResponseFilter implementiert.
-  Response Filter erhalten 2 Kontexte, einen für den Request und einen für die Response. Daher können Request Filter
-  über den Request-Kontext Informationen an einen Response Filter übergeben.
+  Response Filter erhalten 2 Kontexte: einen für den Request und einen für die Response. Daher können Request Filter
+  über ihren Request-Kontext Informationen an einen Response Filter übergeben.
 
 - Erweitern Sie sie Such- und Filtermöglichkeiten in der Klasse PersonsResource und der Methode getAllPersons
   entsprechend unserer heutigen Überlegungen zum Thema API Design.
+
+
+==================================================
+Implementierung einer Zeitmessung für Requests
+==================================================
+- Implementieren Sie einen ContainerRequestFilter, der den aktuellen Zeitstempel in den Properties
+  des ContinerRequestContext ablegt
+
+- Implementieren Sie einen ContainerResponseFilter, der den Zeitstempel aus den Properties des ContinerRequestContext ausliest,
+  die Zeitdifferenz errechnet und ausgibt
+
+- Beides kann in der gleichen Klasse geschehen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

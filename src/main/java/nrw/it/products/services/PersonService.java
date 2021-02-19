@@ -4,6 +4,7 @@ import nrw.it.products.model.Person;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,5 +47,9 @@ public class PersonService {
 
     public Person getById(Long personId) {
         return allPersons.get(personId);
+    }
+
+    public InputStream downloadDocumentForPerson(String personId, String documentId) {
+        throw new RuntimeException("Not yet implemented");
     }
 }
